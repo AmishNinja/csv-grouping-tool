@@ -1,0 +1,10 @@
+# Bundle config
+.bundle/
+
+# Editor/System
+.DS_Store
+.vscode/
+.idea/
+
+# Ignore generated output
+sample_input/prepended_*.csv
