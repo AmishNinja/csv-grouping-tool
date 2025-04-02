@@ -15,6 +15,13 @@ class Runner
     raise OptionParser::MissingArgument, "Missing matching type" if match_type.nil?
 
     rows = Importer.new(filename: file).import
+
+    # Guard clause for empty file
+    if rows.empty?
+      puts "No rows found in #{file}. Nothing to process."
+      return
+    end
+
     Grouper.new(rows, match_type).group
 
     outgoing = File.join(File.dirname(file), "prepended_#{File.basename(file)}")

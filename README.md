@@ -46,6 +46,24 @@ Output sanity check: the largest sample input file (input3.csv) contains exactly
 
 The distribution lines up perfectly, which confirms correct grouping at larger scale.
 
+## Flexible Field Matching
+
+At this time, the matching logic for email addresses and phone numbers is based on a very finite set of column names:
+
+- `Email`, `Email1` and `Email2` for email addresses.
+- `Phone`, `Phone1` and `Phone2` for phone numbers.
+
+In a real world scenario, there could be a significantly larger set of column names from disparate data sources. This would require updating the code manually each time a new data source was onboarded with a unique key for one of those data types (`phone_1`, `phonePrimary`, `emailPrimary`, etc). There are a couple of potential improvements to account for this:
+
+- Dynamically detect fields based on the presence of keywords like `phone` or `email` (case-insensitive matching) in headers.
+- Utilizing a user-defined schema configuration for the fields; idea is that new users would supply you with a JSON or YAML file in a prescribed format that indicates which fields correlate to phone numbers and emails. That way, the codebase could be adjusted to make use of that configuration and ingest data from a wide variety of formats without having to manually update it each time a new one showed up.
+
+Either approach could work well if new datasets were onboarded frequently.
+
+## Extensibility Consideration
+
+A tempting stretch goal would be to implement additional matching fields, such as Zip codes. This would introduce a combinatorial explosion (if bringing in `zip`, you'd also want to accommodate `zip_or_phone`, `zip_or_email_or_phone`, and `zip_or_email`), which would become progressively more unwieldy to hardcode. A flag based interface for the program would make the most sense in this case; so you'd have an indeterminant number of matching keys (`bin/group_csv -f input.csv -m email -m phone -m zip`), and the ETL process would combine them as needed behind the scenes. Happy to dive in and discuss this during a code review conversation if that would be helpful.
+
 ## Author
 
 Submitted by Sean O'Loughlin for the Zipline Technical Assessment.
