@@ -7,4 +7,4 @@
 .idea/
 
 # Ignore generated output
-sample_input/prepended_*.csv
+sample_inputs/prepended_*.csv

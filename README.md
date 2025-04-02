@@ -11,7 +11,7 @@ bundle install
 ## Running
 
 ```bash
-bin/group_csv -f sample_input/input1.csv -m email_or_phone
+bin/group_csv -f sample_inputs/input1.csv -m email_or_phone
 ```
 
 This will generate a new file called `prepended_input1.csv` in the `sample_inputs/` directory.
@@ -26,7 +26,7 @@ bundle exec rspec
 
 The `sample_inputs/` directory contains the same example input files that were included in the [challenge repository](https://github.com/retailzipline/hiring-exercises/tree/main/grouping). They are unmodified from their original format, and are provided for convenience and demonstration of expected output. 
 
-You can drop other input CSVs for additional manual testing. Output files will follow the same pattern of having `prepended_` as the prefix.
+You can add other input CSVs for additional manual testing. Output files will follow the same pattern of having `prepended_` as the prefix.
 
 ## Design Notes
 
