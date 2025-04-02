@@ -16,6 +16,9 @@ bin/group_csv -f sample_inputs/input1.csv -m email_or_phone
 
 This will generate a new file called `prepended_input1.csv` in the `sample_inputs/` directory.
 
+- Matching types (`-m` flag): `phone`, `email`, or `email_or_phone`.
+- File path (`-f` flag): Path to input CSV file.
+
 ## Testing
 
 ```bash
